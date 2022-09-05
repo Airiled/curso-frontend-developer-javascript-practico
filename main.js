@@ -1,12 +1,19 @@
 //En el primer ejercicio se nos pidio que al tocar el mail que aparece en la pagina se nos abriria el menu del usuario
 //el codigo comentado debajo es como lo realice sin saber que existia la linea que se realizo despues de 'desktopMenu.classList.toggle('inactive');'
+
 const desktopMenu = document.querySelector('.desktop-menu');
 const userEmail = document.querySelector('.navbar-email');
+
+const burguerButton = document.querySelector('.menu');
+const mobileMenu = document.querySelector('.mobile-menu');
+
+
 //let aux = true;
 
 console.log('entramos al programa');
 
 userEmail.addEventListener('click', toggleDesktopMenu);
+burguerButton.addEventListener('click', toggleMobileMenu);
 
 function toggleDesktopMenu(){
     console.log('entramos a la funcion');
@@ -22,6 +29,12 @@ function toggleDesktopMenu(){
     // }
 
     desktopMenu.classList.toggle('inactive');
+
+}
+
+function toggleMobileMenu(){
+
+    mobileMenu.classList.toggle('inactive');
 
 }
 
