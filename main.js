@@ -9,6 +9,8 @@ const carritoMenu = document.querySelector('.product-detail')
 
 const cardsContainer = document.querySelector('.cards-container');
 
+
+
 console.log('entramos al programa');
 
 userEmail.addEventListener('click', toggleDesktopMenu);
@@ -40,6 +42,8 @@ function toggleAsideMenu(){
 
 }
 
+ 
+
 
 const productList = [];
 productList.push({
@@ -58,8 +62,8 @@ productList.push({
     img: 'https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600'
 });
 
-function crearProductos(){
-    for(product of productList){
+function crearProductos(arr){
+    for(product of arr){
         //Primero creamos la etiqueta correspondiente y se la asignamos a una variable
         //Luego le agregamos la/las clases que sean necesarias a la etiqueta para que queden como en el ejemplo
         const productCard = document.createElement('div');
@@ -96,3 +100,18 @@ function crearProductos(){
     
     }
 }
+
+crearProductos(productList);
+
+const selectProduct = document.querySelectorAll('.product-card');
+const productDetails = document.querySelector('.product-detail-secundary');
+
+for(element of selectProduct){
+    element.addEventListener('click', toggleAsideDetails);
+}
+
+function toggleAsideDetails(){
+    console.log('hola');
+    productDetails.classList.toggle('inactive');
+}
+
