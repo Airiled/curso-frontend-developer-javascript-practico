@@ -3,11 +3,14 @@ const userEmail = document.querySelector('.navbar-email');
 
 const burguerButton = document.querySelector('.menu');
 const mobileMenu = document.querySelector('.mobile-menu');
+const closeProductDetailsIcon = document.querySelector('.product-detail-secundary-close');
 
 const carritoIcon = document.querySelector('.navbar-shopping-cart')
 const carritoMenu = document.querySelector('.product-detail')
 
 const cardsContainer = document.querySelector('.cards-container');
+
+const productDetails = document.querySelector('.product-detail-secundary');
 
 
 
@@ -16,6 +19,8 @@ console.log('entramos al programa');
 userEmail.addEventListener('click', toggleDesktopMenu);
 burguerButton.addEventListener('click', toggleMobileMenu);
 carritoIcon.addEventListener('click', toggleAsideMenu);
+closeProductDetailsIcon.addEventListener('click', closeDetailsProductAside);
+
 
 function toggleDesktopMenu(){
     const isAsideOpen = carritoMenu.classList.contains('inactive');
@@ -35,13 +40,28 @@ function toggleMobileMenu(){
 function toggleAsideMenu(){
     const isMobileClosed = mobileMenu.classList.contains('inactive'); //variable para identificar el estado del menu
     const isdesktopMenuClosed = desktopMenu.classList.contains('inactive');
-
+    const isDetailsProductClosed = productDetails.classList.contains('inactive');
+    
     carritoMenu.classList.toggle('inactive');
     if(!isMobileClosed) mobileMenu.classList.add('inactive');
     if(!isdesktopMenuClosed) desktopMenu.classList.add('inactive');
+    if(!isDetailsProductClosed) productDetails.classList.add('inactive');
+
 
 }
 
+function openDetailsProductAside(){
+    const isAsideOpen = carritoMenu.classList.contains('inactive');
+
+    productDetails.classList.remove('inactive');
+    if(!isAsideOpen) carritoMenu.classList.add('inactive');
+
+
+}
+
+function closeDetailsProductAside(){
+    productDetails.classList.toggle('inactive');
+}
  
 
 
@@ -71,6 +91,7 @@ function crearProductos(arr){
     
         const imgProduct = document.createElement('img');
         imgProduct.setAttribute('src', product.img);
+        imgProduct.addEventListener('click', openDetailsProductAside);
     
         const productInfo = document.createElement('div');
         productInfo.classList.add('product-info');
@@ -102,16 +123,4 @@ function crearProductos(arr){
 }
 
 crearProductos(productList);
-
-const selectProduct = document.querySelectorAll('.product-card');
-const productDetails = document.querySelector('.product-detail-secundary');
-
-for(element of selectProduct){
-    element.addEventListener('click', toggleAsideDetails);
-}
-
-function toggleAsideDetails(){
-    console.log('hola');
-    productDetails.classList.toggle('inactive');
-}
 
